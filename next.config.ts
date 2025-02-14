@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY, // 환경 변수 추가
+  },
 };
+
+console.log("Loaded API Key:", process.env.OPENAI_API_KEY ? "✅ Loaded" : "❌ Not Found");
 
 export default nextConfig;

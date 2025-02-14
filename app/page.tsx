@@ -1,8 +1,12 @@
-import React from "react";
+'use client';
+import React, { useState } from "react";
 import style from "./page.module.scss";
+import { useStateClassManager } from "./compomnets/Hooks/StateClass";
+
 
 export default function Main(){
+  
   return(
-    <div></div>
+    <div className={style.sidebar}></div>
   )
 }

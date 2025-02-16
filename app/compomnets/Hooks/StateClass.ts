@@ -16,10 +16,10 @@ import { useState } from "react";
 * const [classList, addClass, removeClass, IncludeStateClass] = useStateClassManager();
 */
 export function useStateClassManager(): [
-    string[],
+    string,  
     (newClass: string) => void, 
     (targetClass: string) => void,
-    (targetClass:string)=> boolean
+    (targetClass: string) => boolean
 ] {
     const [classList, setClassList] = useState<string[]>([]);
 
@@ -31,9 +31,9 @@ export function useStateClassManager(): [
         setClassList((prev) => prev.filter((cls) => cls !== targetClass));
     };
     
-    const IncludeStateClass = (targetClass:string) => {
+    const includeStateClass = (targetClass: string) => {
         return classList.includes(targetClass);
-    }
+    };
 
-    return [classList, addStateClass, removeStateClass, IncludeStateClass];
+    return [classList.join(" "), addStateClass, removeStateClass, includeStateClass];
 }

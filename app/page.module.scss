@@ -1,7 +1,42 @@
+
+
 .sidebar{
     position: fixed;
+    z-index: 999;
 }
 
 .hidden{
     display: none !important;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    div:first-of-type{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1vh;
+        }
+    }
+    div:nth-of-type(2){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 3vh;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+
 }

@@ -1,13 +1,21 @@
-import jwt from "jsonwebtoken";
-import { NextApiRequest } from "next";
+import jwt from 'jsonwebtoken';
+import { NextRequest } from 'next/server';
 
-export function verifyToken(req: NextApiRequest) {
-  const token = req.headers.authorization?.split(" ")[1]; // "Bearer TOKEN"
-  if (!token) throw new Error("토큰이 없습니다.");
+const ACCESS_SECRET = process.env.JWT_ACCESS_SECRET as string;
+export function generateAccessToken(payload: object){
+  return jwt.sign(payload, ACCESS_SECRET, { expiresIn: "1h" });
+}
+
+export function verifyAccessToken(req: NextRequest) {
+  const token = req.headers.get("authorization")?.split(" ")[1];
+  
+  if (!token) {
+    throw new Error("You have no token");
+  }
 
   try {
-    return jwt.verify(token, process.env.JWT_SECRET as string);
+    return jwt.verify(token, ACCESS_SECRET);
   } catch (error) {
-    throw new Error("토큰이 유효하지 않습니다.");
+    throw new Error("Token is not valid");
   }
 }

@@ -1,7 +1,7 @@
 body{
     background: #fff;
     color: #000;
-
+    overflow: hidden;
     @media (prefers-color-scheme: dark) {
         background: #212121;
         color: #fff;

@@ -18,4 +18,3 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({message:error.message},{status:401});
   }
 }
-//비번 바꾸기, 프로필 조회 기능 구현하기, 계정 삭제 만들기

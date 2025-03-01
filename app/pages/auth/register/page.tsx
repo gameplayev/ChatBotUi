@@ -38,9 +38,11 @@ export default function Register(){
         
             alert("회원가입이 성공적으로 마무리 되었습니다.");
             route.push('/pages/auth/login');
-        }
-        catch(error:any){
-            console.log(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                throw new Error(error.message);
+            }
+            throw new Error("An unknown error occurred");
         }
     }
     useEffect(()=>{

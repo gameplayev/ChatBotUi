@@ -19,7 +19,10 @@ export async function GET(req: NextRequest) {
     if (!user) return NextResponse.json({message:"유저를 찾을 수 없습니다."},{status:404});
       
     return NextResponse.json({user:user},{status:200});
-  } catch (error: any) {
-    return NextResponse.json({message:error.message},{status:401});
-  }
+  }catch(error: unknown){
+    if (error instanceof Error) {
+        return NextResponse.json({message: error.message}, {status: 500});
+    }
+    return NextResponse.json({message: "An unknown error occurred"}, {status: 500});
+}
 }

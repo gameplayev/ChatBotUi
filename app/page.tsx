@@ -63,8 +63,11 @@ export default function Main(){
         headers:{Authorization:"Bearer "+ accessToken},
       });
       if(!response.ok || response.status === 500){throw new Error("값이 증가되지 않았습니다");}
-    }catch(error:any){
-      throw new Error(error.message);
+    }catch(error: unknown){
+      if (error instanceof Error) {
+          throw new Error(error.message);
+      }
+      throw new Error("An unknown error occurred");
     }
   }
 
@@ -150,7 +153,7 @@ export default function Main(){
               <div key={index}>
                 <span className={style.userRes}>{prev.userRes}</span>
                 {prev.gptRes === "unset" ? <span>loading...</span>: 
-                  <Markdown children={prev.gptRes}></Markdown>
+                  <Markdown>{prev.gptRes}</Markdown>
                 }
               </div>))}
             </div>

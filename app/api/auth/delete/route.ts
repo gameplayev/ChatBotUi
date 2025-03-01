@@ -21,7 +21,10 @@ export async function DELETE(req:NextRequest) {
         if(!res) { return NextResponse.json({message:"failed to Delete User"},{status:401});}
         
         return NextResponse.json({message:"user has been deleted!"},{status:200});
-    }catch(error:any){
-        NextResponse.json({message:error.message},{status:500});
+    }catch(error: unknown){
+        if (error instanceof Error) {
+            return NextResponse.json({message: error.message}, {status: 500});
+        }
+        return NextResponse.json({message: "An unknown error occurred"}, {status: 500});
     }
 }

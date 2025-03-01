@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 
 export default function profile(){
     const router = useRouter();
-    const [email, setEmail] = useState("");
-    const [chatNum,setChatNum] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [click, setClick] = useState(false);
+    const [email, setEmail] = useState<string>("");
+    const [chatNum,setChatNum] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(true);
+    const [click, setClick] = useState<boolean>(false);
 
     const profile = async() =>{
         const accessToken = localStorage.getItem("accessToken");
@@ -24,10 +24,12 @@ export default function profile(){
             setEmail(data.user.email);
             setChatNum(data.user.chatNumber);
             setLoading(false);
-        }catch(error:any){
-            router.push('/');
-            throw new Error(error.message);
-        }
+        }catch(error: unknown){
+            if (error instanceof Error) {
+                throw new Error(error.message);
+            }
+            throw new Error("An unknown error occurred");
+          }
     }
     const removeProfile = async() => {
         const accessToken = localStorage.getItem("accessToken");

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
     const router = useRouter();
-    const [showPw, setShowPw] = useState<Boolean>(false);
+    const [showPw, setShowPw] = useState<boolean>(false);
     const [pwType, setPwType] = useState<string>("password");
     const [password, setPassword] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -101,7 +101,7 @@ export default function Login() {
                 </span>
                 <button className={style.signIn} onClick={login}>Sign In</button>
                 <div className={style.register}>
-                    <span>Don't have account?</span>
+                    <span>Don&apost have account?</span>
                     <Link href="/pages/auth/register">Create Account</Link>
                 </div>
             </div>

@@ -2,12 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/app/compomnets/libs/mongodb";
 import User from "@/app/compomnets/models/user";
 import { verifyAccessToken } from "@/app/compomnets/libs/auth";
+import { Jwt, JwtPayload } from "jsonwebtoken";
+
+interface decodedJwt extends JwtPayload {
+    id: string;
+}
 
 export async function PATCH(req:NextRequest) {
     await connectDB();
 
     try{
-        const decoded:any = verifyAccessToken(req);
+        const decoded = verifyAccessToken(req) as decodedJwt;
         const user = await User.findById(decoded.id).select("-password");
         if(!user) return NextResponse.json({message:"failed to find User"},{status:500});
 

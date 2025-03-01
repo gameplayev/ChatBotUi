@@ -5,7 +5,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 if (!MONGODB_URI) {
   throw new Error("MONGODB_URI is not set in the environment variables");
 }
-//laiJYAEsSeEbgn1u
+
 interface CachedMongoose {
   conn: Mongoose | null;
   promise: Promise<Mongoose> | null;

@@ -2,13 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/app/compomnets/libs/mongodb";
 import { verifyAccessToken } from "@/app/compomnets/libs/auth";
 import User from "@/app/compomnets/models/user";
+import { JwtPayload } from "jsonwebtoken";
+
+interface decodedJwt extends JwtPayload {
+    id: string;
+}
 
 
 export async function DELETE(req:NextRequest) {
     try{
         await connectDB();
 
-        const decoded:any = verifyAccessToken(req);
+        const decoded = verifyAccessToken(req) as decodedJwt;
         if(!decoded){ return NextResponse.json({message:"failed to find User"},{status:404});}
         const userID = decoded.id;
         

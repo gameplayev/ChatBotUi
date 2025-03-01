@@ -15,7 +15,7 @@ export function verifyAccessToken(req: NextRequest) {
 
   try {
     return jwt.verify(token, ACCESS_SECRET);
-  } catch (error) {
-    throw new Error("Token is not valid");
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 }

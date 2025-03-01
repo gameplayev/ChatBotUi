@@ -11,7 +11,12 @@ interface CachedMongoose {
   promise: Promise<Mongoose> | null;
 }
 
-let cached: CachedMongoose = (globalThis as any).mongoose || { conn: null, promise: null };
+interface GlobalWithMongoose  {
+  mongoose?: CachedMongoose;
+}
+
+
+const cached: CachedMongoose = (globalThis as GlobalWithMongoose).mongoose || { conn: null, promise: null };
 
 export async function connectDB(): Promise<Mongoose> {
 
@@ -26,7 +31,7 @@ export async function connectDB(): Promise<Mongoose> {
   }
 
   cached.conn = await cached.promise;
-  (globalThis as any).mongoose = cached;
+  (globalThis as GlobalWithMongoose).mongoose = cached;
 
   return cached.conn;
 }

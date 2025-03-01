@@ -43,7 +43,7 @@
     "@types/he": "^1.2.3",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^20",
+    "@types/node": "^20.17.22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-latex": "^2.0.3",

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./page.module.scss";
 import MenuSvg from './compomnets/svgs/layout-sidebar-inactive.svg';
 import NewChatSvg from './compomnets/svgs/file-pencil.svg';
@@ -64,7 +64,7 @@ export default function Main(){
       });
       if(!response.ok || response.status === 500){throw new Error("값이 증가되지 않았습니다");}
     }catch(error:any){
-      throw new Error("failed to get answer");
+      throw new Error(error.message);
     }
   }
 

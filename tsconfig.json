@@ -26,7 +26,13 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "next"
+    ]
   },
   "include": [
     "next-env.d.ts",

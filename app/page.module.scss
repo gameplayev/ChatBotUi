@@ -86,12 +86,12 @@
         overflow-y: scroll;
         height: 85%;
         width: 45vw;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         @media (prefers-color-scheme: dark) {
             background: #303030;
             color: #fff;
         }
-        scrollbar-width: none;
-        -ms-overflow-style: none;
         &::-webkit-scrollbar{
             display: none;
         }

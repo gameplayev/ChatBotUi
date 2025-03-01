@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import style from './profile.module.scss';
 import { useRouter } from 'next/navigation';
 
+
 export default function Profile() {
     const router = useRouter();
     const [email, setEmail] = useState<string>("");

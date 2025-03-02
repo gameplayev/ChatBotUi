@@ -68,7 +68,7 @@ export default function Login() {
         }
         window.addEventListener("keydown", HandleKeyDown);
         return () => { window.removeEventListener("keydown", HandleKeyDown); }
-    }, []);
+    });
 
     const isValidEmail = (email: string) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

@@ -14,8 +14,8 @@ export async function GET(req: NextRequest) {
 
   try {
     const decoded = verifyAccessToken(req) as decodedJwt;
+    if(!decoded) return NextResponse.json({message:"토큰이 유효하지 않습니다."},{status:401});
     const user = await User.findById(decoded.id).select("-password");
-
     if (!user) return NextResponse.json({message:"유저를 찾을 수 없습니다."},{status:404});
       
     return NextResponse.json({user:user},{status:200});

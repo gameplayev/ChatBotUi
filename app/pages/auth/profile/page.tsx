@@ -19,7 +19,7 @@ export default function Profile() {
                 headers: { Authorization: "Bearer " + accessToken },
             });
             const data = await res.json();
-            if (res.status === 404) {
+            if (res.status === 404 || res.status === 401) {
                 alert("failed to find User");
                 router.push('/');
                 throw new Error("failed to find User");
@@ -60,8 +60,11 @@ export default function Profile() {
             alert("Successfully Deleted your account!");
             localStorage.removeItem("accessToken");
             router.push('/');
-        } catch (error: any) {
-            throw new Error(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                throw new Error(error.message);
+            }
+            throw new Error("An unknown error occurred");
         }
     }
 

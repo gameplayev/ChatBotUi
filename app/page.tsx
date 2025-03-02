@@ -70,7 +70,35 @@ export default function Main(){
       throw new Error("An unknown error occurred");
     }
   }
-
+  const profile = async()=>{
+    const accessToken = localStorage.getItem("accessToken");
+    try{
+      const res = await fetch('/api/auth/profile',{
+        method:"GET",
+        headers:{Authorization:"Bearer "+ accessToken},
+      });
+      const data = await res.json();
+      if(res.status === 404 || res.status === 401){
+        alert("failed to find User");
+        localStorage.removeItem("accessToken");
+        router.push('/pages/auth/login');
+        throw new Error("failed to find User");
+      }
+      if(!res.ok){
+        alert("failed to connect with server");
+        localStorage.removeItem("accessToken");
+        router.push('/pages/auth/login');
+        throw new Error("failed to connect with server");
+      }
+    }catch(error: unknown){
+      localStorage.removeItem("accessToken");
+      router.push('/pages/auth/login');
+      if(error instanceof Error){
+        throw new Error(error.message);
+      }
+      throw new Error("An unknown error occurred");
+    }
+  }
   const HandleLogOut = () => {
     localStorage.removeItem("accessToken");
     router.push('/pages/auth/login');
@@ -122,7 +150,10 @@ export default function Main(){
       }
       window.addEventListener("keydown",HandleKeyDown);
       return ()=> {window.removeEventListener("keydown",HandleKeyDown);}
-  },[]);
+  });
+  useEffect(()=>{
+    profile();
+  }),[];
   return(
     <div>
       <div className={style.nav}>

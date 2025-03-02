@@ -53,7 +53,7 @@ export default function Register(){
         }
         window.addEventListener("keydown",HandleKeyDown);
         return ()=> {window.removeEventListener("keydown",HandleKeyDown);}
-    },[]);
+    });
 
 
     return (

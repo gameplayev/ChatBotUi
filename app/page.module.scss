@@ -77,7 +77,7 @@
     align-items: center;
     height: 90vh;
     @media (prefers-color-scheme: dark) {
-        background: #303030;
+        background: #212121;
         color: #fff;
     }
     .gptcontent{
@@ -89,7 +89,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         @media (prefers-color-scheme: dark) {
-            background: #303030;
+            background: #212121;
             color: #fff;
         }
         &::-webkit-scrollbar{

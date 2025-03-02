@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import style from './profile.module.scss';
 import { useRouter } from 'next/navigation';
-
+import { useCallback } from "react";
 
 export default function Profile() {
     const router = useRouter();
@@ -11,7 +11,7 @@ export default function Profile() {
     const [loading, setLoading] = useState<boolean>(true);
     const [click, setClick] = useState<boolean>(false);
 
-    const profile = async () => {
+    const profile = useCallback(async () => {
         const accessToken = localStorage.getItem("accessToken");
         try {
             const res = await fetch('/api/auth/profile', {
@@ -38,7 +38,7 @@ export default function Profile() {
             }
             throw new Error("An unknown error occurred");
         }
-    }
+    },['/api/auth/profile'])
 
     const removeProfile = async () => {
         const accessToken = localStorage.getItem("accessToken");
@@ -76,7 +76,7 @@ export default function Profile() {
 
     useEffect(() => {
         profile();
-    }, []);
+    },[]);
 
     if (loading) return <div className={style.loading}>loading...</div>;
 

@@ -77,7 +77,6 @@ export default function Main(){
         method:"GET",
         headers:{Authorization:"Bearer "+ accessToken},
       });
-      const data = await res.json();
       if(res.status === 404 || res.status === 401){
         alert("failed to find User");
         localStorage.removeItem("accessToken");
@@ -153,7 +152,7 @@ export default function Main(){
   });
   useEffect(()=>{
     profile();
-  }),[];
+  },[]);
   return(
     <div>
       <div className={style.nav}>
